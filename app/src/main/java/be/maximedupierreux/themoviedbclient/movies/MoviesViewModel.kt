@@ -17,12 +17,17 @@ class MoviesViewModel(application: Application) : AndroidViewModel(application) 
     var moviesService: MoviesService = MoviesService.create()
     val movies: MutableLiveData<MutableList<Movie>> = MutableLiveData()
 
+    fun findMovie(id: Int): Movie? {
+        return this.movies.value?.find {
+            it.id == id
+        }
+    }
 
     fun findMovies(searchTerm: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val moviesResponse = moviesService.searchMovies("b2168bae3a2c67509eb6b97572f521c2", searchTerm)
             if (moviesResponse.isSuccessful) {
-                 movies.value = moviesResponse.body()?.movies?.toMutableList()
+                 movies.postValue(moviesResponse.body()?.movies?.toMutableList())
                 Log.d("TAG", "findMovies: "+moviesResponse.body()?.totalResults)
             }
         }

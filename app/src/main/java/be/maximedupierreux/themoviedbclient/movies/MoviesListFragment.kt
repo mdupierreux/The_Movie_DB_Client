@@ -39,9 +39,7 @@ class MoviesListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MoviesViewModel::class.java)
-
-        viewModel.findMovies("interstellar");
+        viewModel = ViewModelProvider(requireActivity()).get(MoviesViewModel::class.java)
 
         viewModel.movies.observe(viewLifecycleOwner, { movies ->
             if (movies != null && movies.isNotEmpty()) {

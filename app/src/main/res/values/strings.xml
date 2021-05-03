@@ -11,4 +11,5 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="movies_list_fragment_label">"Movies List Fragment "</string>
     <string name="movie_details_fragment_label">Movie Details Fragment</string>
+    <string name="visit_website">Visit website</string>
 </resources>
